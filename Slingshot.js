@@ -5,7 +5,7 @@ constructor(bodyA, pointB){
     var options= {
         bodyA: bodyA,
         pointB: pointB,
-        stiffness : 0.01,
+        stiffness : 0.04,
         length : 10
     }
 
@@ -20,6 +20,12 @@ constructor(bodyA, pointB){
 fly() {
     this.sling.bodyA = null;
 }
+
+attach(body){
+    this.sling.bodyA=body 
+    
+}
+
 
 display(){
     image(this.sling1,200,20);
