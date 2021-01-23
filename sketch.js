@@ -6,6 +6,7 @@ var engine, world;
 var box1, pig1;
 var backgroundImg,platform;
 var gamestate= "onSling";
+var score= 0
 
 function preload() {
     //backgroundImg = loadImage("sprites/bg.png");
@@ -47,6 +48,10 @@ function draw(){
     if(backgroundImg){
         background(backgroundImg);
     }
+    fill ('black');
+    textSize(30);
+    text ("s c o r e : "+ score, width - 300 , 50);
+
     
     Engine.update(engine);
     // console.log(box2.body.position.x);
@@ -56,12 +61,14 @@ function draw(){
     box2.display();
     ground.display();
     pig1.display();
+    pig1.score();
     log1.display();
     
 
     box3.display();
     box4.display();
     pig3.display();
+    pig3.score();
     log3.display();
 
     box5.display();
@@ -75,10 +82,18 @@ function draw(){
    
 }
 
+// Debugging!!
+
+// Comments in all sections
+// code indentation
+// console.log()
+
+
 function mouseDragged(){
-    if(gamestate!=="launched"){
+    
+    //if(gamestate!=="launched"){
         Matter.Body.setPosition(bird.body,{x : mouseX , y: mouseY});
-    }
+    //}
 }
 
 function mouseReleased(){
@@ -87,7 +102,9 @@ function mouseReleased(){
 }
 function keyPressed(){
     if (keyCode === 32){
+        Matter.Body.setPosition(bird.body,{x : 200 , y: 50});
         slingshot.attach(bird.body); 
+        bird.trajectory= []
     }
 }
 
@@ -109,6 +126,4 @@ async function getTime(){
     }
 
     backgroundImg = loadImage(bkimage);
-
-
 }
